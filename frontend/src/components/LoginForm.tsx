@@ -1,8 +1,18 @@
 import { Dispatch } from "react";
 
 import { useState } from "react";
-import { Input, Button, Flex, Heading, Checkbox, Alert, AlertIcon, AlertDescription } from "@chakra-ui/react";
-import {useUserContext, DispatchType as UserAction} from "../hooks/LoginContext";
+import {
+  Input,
+  Button,
+  Flex,
+  Heading,
+  Checkbox,
+  Alert,
+  AlertIcon,
+  AlertDescription,
+  Text,
+} from "@chakra-ui/react";
+import { useUserContext } from "../hooks/LoginContext";
 
 function LoginForm() {
   const [username, setUsername] = useState("");
@@ -35,8 +45,13 @@ function LoginForm() {
         placeholder="Password"
         disabled={disableUI}
       />
+      {status.error && (
+        <Text color="red.500">{status.errorMess}</Text>
+      )}
       <Checkbox defaultChecked>Save cookies</Checkbox>
-      <Button isLoading={status.loading} onClick={submit} disabled={disableUI}>Login</Button>
+      <Button isLoading={status.loading} onClick={submit} disabled={disableUI}>
+        Login
+      </Button>
       <Alert status="info" borderRadius={5}>
         <AlertIcon />
         <AlertDescription>
